@@ -5,7 +5,7 @@ namespace Sparrow
 	/// <summary>
 	/// Controller for the character
 	/// </summary>
-	public class CharacterController : MonoBehaviour
+	public class CharacterController : SingletonBehaviour<CharacterController>
 	{
 		/// <summary>
 		/// The movement speed of the character
