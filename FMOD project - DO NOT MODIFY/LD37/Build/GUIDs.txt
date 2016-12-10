@@ -1,0 +1,4 @@
+{5f84df14-f7cc-4400-8079-b28c3efffc89} event:/Bass-Drum-1
+{2b7bda81-cbb9-46a4-8b48-2991f8b8df44} bus:/
+{9d035ea8-0e3c-4289-93c1-e0bf36761005} bus:/Reverb
+{45325fe1-9236-4aad-a861-02a794425e9f} bank:/Master Bank
