@@ -1,4 +1,5 @@
-{5f84df14-f7cc-4400-8079-b28c3efffc89} event:/Bass-Drum-1
-{2b7bda81-cbb9-46a4-8b48-2991f8b8df44} bus:/
-{9d035ea8-0e3c-4289-93c1-e0bf36761005} bus:/Reverb
-{45325fe1-9236-4aad-a861-02a794425e9f} bank:/Master Bank
+{93dfb6cf-9687-464e-b2db-b7d95861f9c4} event:/Music
+{0d135157-a6c1-48a8-a7a1-6d608e671a8a} bus:/
+{640be2a0-5309-4f07-903b-f025157044c9} bus:/Reverb
+{10bc1f42-af98-4d1b-a5a7-e83e6af5dfb3} bank:/Music
+{1e8543ed-36d6-4b04-ad26-878fe22058b0} bank:/Master Bank
