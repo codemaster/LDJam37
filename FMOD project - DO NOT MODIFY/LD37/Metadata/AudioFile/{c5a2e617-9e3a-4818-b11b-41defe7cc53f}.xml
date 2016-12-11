@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{c5a2e617-9e3a-4818-b11b-41defe7cc53f}">
+        <property name="assetPath">
+            <value>FABRIC Movement Short RR3 (mono).wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>1.0033333333333334</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{9a65e692-c27d-4244-bad2-518f78990ba4}</destination>
+        </relationship>
+    </object>
+</objects>

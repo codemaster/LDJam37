@@ -1,5 +1,7 @@
+{ec3572dc-54b3-4de4-92b2-a1f060bb1bf2} event:/Footsteps
 {93dfb6cf-9687-464e-b2db-b7d95861f9c4} event:/Music
 {0d135157-a6c1-48a8-a7a1-6d608e671a8a} bus:/
 {640be2a0-5309-4f07-903b-f025157044c9} bus:/Reverb
 {10bc1f42-af98-4d1b-a5a7-e83e6af5dfb3} bank:/Music
+{4700295d-faf0-42bb-9013-0f7f00c3cdf2} bank:/Player
 {1e8543ed-36d6-4b04-ad26-878fe22058b0} bank:/Master Bank
