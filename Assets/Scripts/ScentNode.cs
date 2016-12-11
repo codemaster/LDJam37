@@ -29,6 +29,22 @@ public class ScentNode : MonoBehaviour {
     /// </summary>
     public List<ScentNode> LinkedNodes;
 
+    private GizmosController _gizControl = null;
+    public GizmosController GizControl
+    {
+        get
+        {
+            if (_gizControl == null)
+                _gizControl = FindObjectOfType<GizmosController>();
+            return _gizControl;
+        }
+    }
+
+    void Start()
+    {
+        _gizControl = FindObjectOfType<GizmosController>();
+    }
+
     void Update()
     {
         FadeScent();
@@ -51,12 +67,13 @@ public class ScentNode : MonoBehaviour {
     /// <returns>The smellier neighbour.</returns>
     public ScentNode GetSmellierNeighbour()
     {
+        ScentNode result = this;
         foreach (var node in LinkedNodes)
         {
-            if (node.PlayerScent > PlayerScent)
-                return node;
+            if (node.PlayerScent > result.PlayerScent)
+                result = node;
         }
-        return null;
+        return result;
     }
 
     /// <summary>
@@ -95,12 +112,18 @@ public class ScentNode : MonoBehaviour {
     private void DrawGizmos(Color gizmosColor)
     {
         Gizmos.color = gizmosColor;
-        Gizmos.DrawWireSphere(transform.position, gizmoSphereSize);
+
+        if(GizControl.WiredScent)
+            Gizmos.DrawWireSphere(transform.position, gizmoSphereSize);
+        else
+            Gizmos.DrawSphere(transform.position, gizmoSphereSize);
+        
         if (LinkedNodes != null)
         {
             foreach (var node in LinkedNodes)
             {
-                Gizmos.DrawLine(transform.position, node.transform.position);
+                if(node != null)
+                    Gizmos.DrawLine(transform.position, node.transform.position);
             }
         }
     }
