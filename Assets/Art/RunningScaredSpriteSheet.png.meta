@@ -1,9 +1,17 @@
 fileFormatVersion: 2
-guid: de8f3c0ee24c32447a76b5f23551ef26
-timeCreated: 1481489476
+guid: c2229b55d1f6f4e27958ff2ef4225f0b
+timeCreated: 1481482780
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: RunningScaredSpriteSheet_0
+    21300002: RunningScaredSpriteSheet_1
+    21300004: RunningScaredSpriteSheet_2
+    21300006: RunningScaredSpriteSheet_3
+    21300008: RunningScaredSpriteSheet_4
+    21300010: RunningScaredSpriteSheet_5
+    21300012: RunningScaredSpriteSheet_6
+    21300014: RunningScaredSpriteSheet_7
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -34,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -51,7 +59,39 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 512
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -60,9 +100,113 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: RunningScaredSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 99
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RunningScaredSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 202
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RunningScaredSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 100
+        width: 85
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RunningScaredSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 98
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RunningScaredSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 99
+        width: 88
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RunningScaredSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 88
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RunningScaredSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 88
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RunningScaredSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 96
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
-  spritePackingTag: 
+  spritePackingTag: character
   userData: 
   assetBundleName: 
   assetBundleVariant: 

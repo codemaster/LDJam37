@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
+using System;
 using System.Collections.Generic;
 
 namespace Sparrow
@@ -12,6 +14,38 @@ namespace Sparrow
 		/// The movement speed of the character
 		/// </summary>
 		public float MovementSpeed;
+
+		/// <summary>
+		/// The player's current health accessor/setter
+		/// </summary>
+		public int Health
+		{
+			get
+			{
+				return _health;
+			}
+			private set
+			{
+				_health = value;
+				OnHealthChange.Invoke(Health);
+			}
+		}
+
+		/// <summary>
+		/// The player's starting health
+		/// </summary>
+		public int StartingHealth;
+
+		/// <summary>
+		/// Event class for health changing
+		/// </summary>
+		[Serializable]
+		public class HealthChangeEvent : UnityEvent<int> { };
+
+		/// <summary>
+		/// Event for when the character's health changes
+		/// </summary>
+		public HealthChangeEvent OnHealthChange;
 
         /// <summary>
         /// Is the player PoweredUp?
@@ -52,11 +86,17 @@ namespace Sparrow
         /// </summary>
         private List<PowerupNotifee> _powerupNotifees;
 
+		/// <summary>
+		/// The current health of the character
+		/// </summary>
+		int _health;
+
         /// <summary>
         /// Start this instance.
         /// </summary>
         void Start()
         {
+			Health = StartingHealth;
             _powerupNotifees = new List<PowerupNotifee>();
         }
 
@@ -99,6 +139,17 @@ namespace Sparrow
 				Debug.Log("Open the door");
 				// Open the door
 				door.Open();
+			}
+
+			// Check if the other object is an enemy
+			var enemy = other.GetComponent<Enemy>();
+			if (null != enemy)
+			{
+				Debug.Log("Attacked by enemy");
+				// Destroy the enemy
+				Destroy(other);
+				// Reduce health by 1
+				Health--;
 			}
 		}
 
