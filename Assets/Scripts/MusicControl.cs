@@ -31,9 +31,13 @@ public class MusicControl : MonoBehaviour {
 	public void CreepValue (float Value = 0.0f){
 		musicEv.setParameterValue ("Creep", Value);
 	}
+
+	Vector3 position;
 	
 	// Update is called once per frame
 	void Update () {
-		
+		position = Camera.main.transform.position;
+		position.z = 10;
+		musicEv.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes (position));
 	}
 }
