@@ -135,11 +135,13 @@ namespace Sparrow
             {
                 // This GetComponent might slow things down a bit
                 ScentNode node = col.gameObject.GetComponent<ScentNode>();
+
                 if (node.PlayerScent > 0)
+                {
                     MovementType = EnemyMovementType.ScentTracking;
+                }
                 else
                     MovementType = EnemyMovementType.FreeRoam;
-                
                 switch (MovementType)
                 {
                     case EnemyMovementType.ScentTracking:

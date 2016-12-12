@@ -101,6 +101,7 @@ public class ScentNode : MonoBehaviour {
         ScentNode result = this;
         foreach (var node in LinkedNodes)
         {
+//            return node;
             if (Random.value > chance)
             {
                 result = node;
