@@ -82,7 +82,8 @@ namespace Sparrow
                     DirectChase(CharacterController.Instance.transform);
                     break;
                 case EnemyMovementType.FreeRoam:
-                    // TODO
+                    if(TargetNode != null)
+                        DirectChase(TargetNode.transform);
                     break;
                 case EnemyMovementType.ScentTracking:
                     if(TargetNode != null)
@@ -105,10 +106,12 @@ namespace Sparrow
                     direction = (chaseTarget.position - transform.position).normalized;
                     break;
                 case EnemyChaseMode.Escape:
-                    direction = (chaseTarget.position - transform.position).normalized * -1;
+                    // The escaping system works by taking following the nodes with the least amount of scent,
+                    // wich is not optimal, to say the least. Doing it like this, then we don't have to process the opposite direction here.
+                    // Leaving this case here to come back to it later and do all this properly.
+                    direction = (chaseTarget.position - transform.position).normalized;// * -1;
                     break;
             }
-
 
             var movement = Time.deltaTime * MovementSpeed * direction;
 			PlayStepSound (movement);
@@ -138,9 +141,33 @@ namespace Sparrow
             {
                 // This GetComponent might slow things down a bit
                 ScentNode node = col.gameObject.GetComponent<ScentNode>();
-                // Should check the neighbours even if the current one is scentless
-                //if (node.PlayerScent > 0)
-                TargetNode = node.GetSmellierNeighbour();
+
+                if (node.PlayerScent > 0)
+                {
+                    MovementType = EnemyMovementType.ScentTracking;
+                }
+                else
+                    MovementType = EnemyMovementType.FreeRoam;
+                switch (MovementType)
+                {
+                    case EnemyMovementType.ScentTracking:
+                        switch (ChaseMode)
+                        {
+                            case EnemyChaseMode.Chase:
+                                TargetNode = node.GetSmellierNeighbour();
+                                break;
+
+                            case EnemyChaseMode.Escape:
+                                TargetNode = node.GetLessSmellyNeighbor();
+                                break;
+                        }
+                        break;
+
+                    case EnemyMovementType.FreeRoam:
+                        if(TargetNode == null || TargetNode == node)
+                            TargetNode = node.GetRandomNeighbor();
+                        break;
+                }
             }
         }
 
