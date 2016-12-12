@@ -37,9 +37,9 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : Component
 	}
 
 	/// <summary>
-	/// Constructor that deletes the object if an instance already exists
+	/// Initializer that deletes the object if an instance already exists
 	/// </summary>
-	public SingletonBehaviour()
+	void Awake()
 	{
 		if (null != _instance)
 		{
