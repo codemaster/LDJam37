@@ -1,8 +1,11 @@
 {2c0d24fa-8001-4a3b-b835-3767a40072cf} event:/CloseDoor
 {ec3572dc-54b3-4de4-92b2-a1f060bb1bf2} event:/Footsteps
+{5761d471-acbd-4975-b640-8085836b2100} event:/HitWall
 {93dfb6cf-9687-464e-b2db-b7d95861f9c4} event:/Music
 {7464ae35-00e2-4570-9b98-19b0fe8f47be} event:/OpenDoor
+{0d8463e2-b0e9-4f96-8d89-b9216c88f5c2} event:/PlayerTakeDamage
 {d270b193-b617-4213-b3c2-12c1bb4a9eba} event:/Snore
+{008e7371-1166-4b54-850c-5717a6954317} event:/Collect
 {0d135157-a6c1-48a8-a7a1-6d608e671a8a} bus:/
 {640be2a0-5309-4f07-903b-f025157044c9} bus:/Reverb
 {10bc1f42-af98-4d1b-a5a7-e83e6af5dfb3} bank:/Music

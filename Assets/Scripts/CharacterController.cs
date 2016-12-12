@@ -9,7 +9,7 @@ namespace Sparrow
 	/// Controller for the character
 	/// </summary>
 	[RequireComponent(typeof(Animator))]
-	[RequireComponent(typeof(FMODUnity.StudioEventEmitter))]
+	//[RequireComponent(typeof(FMODUnity.StudioEventEmitter))]
     public class CharacterController : SingletonBehaviour<CharacterController>, PowerupNotifier
 	{		
 		/// <summary>
@@ -121,14 +121,21 @@ namespace Sparrow
 		protected bool _use;
 
 		// sound emitter reference
-		FMODUnity.StudioEventEmitter eventEmitterRef;
+		[FMODUnity.EventRef]
+		public string FootstepEvent;
+		[FMODUnity.EventRef]
+		public string DamageEvent;
+		[FMODUnity.EventRef]
+		public string DoorEvent;
+		[FMODUnity.EventRef]
+		public string CollectableEvent;
 		public float stepNoiseCooldown = 0.5f;
 
-		void Awake()
+		/*void Awake()
 		{
 			// Reference to sound emitter component of this object
 			eventEmitterRef = GetComponent<FMODUnity.StudioEventEmitter>();
-		}
+		}*/
 
 		/// <summary>
 		/// Updates once per frame
@@ -167,6 +174,7 @@ namespace Sparrow
 				Debug.Log("Open the door");
 				// Open the door
 				door.Open();
+				FMODUnity.RuntimeManager.PlayOneShot(DoorEvent, transform.position);
 			}
 
 			// Check if the other object is an enemy
@@ -178,6 +186,8 @@ namespace Sparrow
 				Destroy(other);
 				// Reduce health by 1
 				Health--;
+				FMODUnity.RuntimeManager.PlayOneShot(DamageEvent, transform.position);
+
 			}
 
 			// Check if the other object is a collectable
@@ -186,6 +196,7 @@ namespace Sparrow
 			{
 				Debug.Log("Obtained collectable");
 				OnCollectItem.Invoke();
+				FMODUnity.RuntimeManager.PlayOneShot(CollectableEvent, transform.position);
 
 			}
 		}
@@ -298,7 +309,7 @@ namespace Sparrow
 		void PlayStepSound(float vertical, float horizontal){
 			if(((vertical != 0.0f) || (horizontal != 0.0f)) && (timeElapsedSinceLastStep>stepNoiseCooldown)){
 				//Debug.Log ("Step");
-				eventEmitterRef.Play();
+				FMODUnity.RuntimeManager.PlayOneShot(FootstepEvent, transform.position);
 				timeElapsedSinceLastStep = 0.0f;
 			}
 			timeElapsedSinceLastStep += Time.deltaTime;
