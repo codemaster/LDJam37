@@ -62,7 +62,7 @@ public class ScentNode : MonoBehaviour {
     }
 
     /// <summary>
-    /// Gets the liked node with a higher scent than this one. If none has higher scent than returns null;
+    /// Gets the liked node with a higher scent than this one. If none has higher scent then returns itself.
     /// </summary>
     /// <returns>The smellier neighbour.</returns>
     public ScentNode GetSmellierNeighbour()
@@ -72,6 +72,40 @@ public class ScentNode : MonoBehaviour {
         {
             if (node.PlayerScent > result.PlayerScent)
                 result = node;
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// Gets the linked node with a lower scent than this one. If none has lower scent then returns itself.
+    /// </summary>
+    /// <returns>The less smelly neighbor.</returns>
+    public ScentNode GetLessSmellyNeighbor()
+    {
+        ScentNode result = this;
+        foreach (var node in LinkedNodes)
+        {
+            if (node.PlayerScent <= result.PlayerScent)
+                result = node;
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// Gets a random linked node.
+    /// </summary>
+    /// <returns>The random neighbor.</returns>
+    public ScentNode GetRandomNeighbor()
+    {
+        float chance = 1.0f / LinkedNodes.Count;
+        ScentNode result = this;
+        foreach (var node in LinkedNodes)
+        {
+            if (Random.value > chance)
+            {
+                result = node;
+                return result;
+            }
         }
         return result;
     }
