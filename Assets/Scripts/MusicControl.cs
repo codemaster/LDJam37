@@ -11,6 +11,7 @@ public class MusicControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		DontDestroyOnLoad (transform.gameObject);
 		musicEv = FMODUnity.RuntimeManager.CreateInstance (music);
 		musicEv.start ();
 	}

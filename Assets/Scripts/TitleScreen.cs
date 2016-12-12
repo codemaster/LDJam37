@@ -9,6 +9,12 @@ namespace Sparow
 	/// </summary>
 	public class TitleScreen : MonoBehaviour
 	{
+		public MusicControl musicSystem;
+
+		void Start(){
+			musicSystem = GameObject.Find("MusicSystem").GetComponent<MusicControl>();
+		}
+
 		/// <summary>
 		/// Update in each frame
 		/// </summary>
@@ -26,6 +32,7 @@ namespace Sparow
 		/// <returns>IEnumerator for coroutine</returns>
 		IEnumerator LoadGame()
 		{
+			musicSystem.InGameMusic (1.0f);
 			yield return SceneManager.LoadSceneAsync("Gameplay");
 		}
 	}
