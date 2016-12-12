@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
+using System;
 using System.Collections.Generic;
 
 namespace Sparrow
@@ -6,12 +8,53 @@ namespace Sparrow
 	/// <summary>
 	/// Controller for the character
 	/// </summary>
+	[RequireComponent(typeof(Animator))]
     public class CharacterController : SingletonBehaviour<CharacterController>, PowerupNotifier
-	{
+	{		
 		/// <summary>
 		/// The movement speed of the character
 		/// </summary>
 		public float MovementSpeed;
+
+		/// <summary>
+		/// The player's current health accessor/setter
+		/// </summary>
+		public int Health
+		{
+			get
+			{
+				return _health;
+			}
+			private set
+			{
+				_health = value;
+				if (null != OnHealthChange)
+				{
+					OnHealthChange.Invoke(Health);
+				}
+			}
+		}
+
+		/// <summary>
+		/// The player's starting health
+		/// </summary>
+		public int StartingHealth;
+
+		/// <summary>
+		/// Event class for health changing
+		/// </summary>
+		[Serializable]
+		public class HealthChangeEvent : UnityEvent<int> { };
+
+		/// <summary>
+		/// Event for when the character's health changes
+		/// </summary>
+		public HealthChangeEvent OnHealthChange;
+
+		/// <summary>
+		/// When a collectable item is obtained
+		/// </summary>
+		public UnityEvent OnCollectItem;
 
         /// <summary>
         /// Is the player PoweredUp?
@@ -50,14 +93,25 @@ namespace Sparrow
         /// <summary>
         /// The powerup notifees.
         /// </summary>
-        private List<PowerupNotifee> _powerupNotifees;
+		readonly List<PowerupNotifee> _powerupNotifees = new List<PowerupNotifee>();
+
+		/// <summary>
+		/// The animator for the character
+		/// </summary>
+		Animator _animator;
+
+		/// <summary>
+		/// The current health of the character
+		/// </summary>
+		int _health;
 
         /// <summary>
         /// Start this instance.
         /// </summary>
         void Start()
         {
-            _powerupNotifees = new List<PowerupNotifee>();
+			Health = StartingHealth;
+			_animator = GetComponent<Animator>();
         }
 
 		/// <summary>
@@ -72,10 +126,11 @@ namespace Sparrow
 		{
 			// Using something?
 			_use = Input.GetButton("Jump");
-			
+
 			// Movement
-			var horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed;
 			var vertical = Input.GetAxis("Vertical") * Time.deltaTime * MovementSpeed;
+			var horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed;
+			UpdateMovementSprite(vertical, horizontal);
 			transform.Translate(horizontal, vertical, 0f);
 
             CheckPowerUpTime();
@@ -99,6 +154,26 @@ namespace Sparrow
 				Debug.Log("Open the door");
 				// Open the door
 				door.Open();
+			}
+
+			// Check if the other object is an enemy
+			var enemy = other.GetComponent<Enemy>();
+			if (null != enemy)
+			{
+				Debug.Log("Attacked by enemy");
+				// Destroy the enemy
+				Destroy(other);
+				// Reduce health by 1
+				Health--;
+			}
+
+			// Check if the other object is a collectable
+			var collectable = other.GetComponent<CollectItem>();
+			if (null != collectable)
+			{
+				Debug.Log("Obtained collectable");
+				OnCollectItem.Invoke();
+
 			}
 		}
 
@@ -132,11 +207,6 @@ namespace Sparrow
         /// <param name="notifee">Notifee.</param>
         public void RegisterPowerupNotifee(PowerupNotifee notifee)
         {
-            if (_powerupNotifees == null)
-            {
-                Debug.LogWarning(name + "'s CharacterController's powerupNotifees list not instantiated. Check the Scripts Execution Order.");
-                return;
-            }
             _powerupNotifees.Add(notifee);
         }
 
@@ -172,5 +242,42 @@ namespace Sparrow
             if (col.gameObject.CompareTag("Powerup"))
                 PoweredUp = true;
         }
+
+		/// <summary>
+		/// Updates the movement sprite.
+		/// </summary>
+		/// <param name="vertical">Vertical movement</param>
+		/// <param name="horizontal">Horizontal movement</param>
+		void UpdateMovementSprite(float vertical, float horizontal)
+		{
+			// Prioritize vertical movement
+			if (Mathf.Abs(vertical) > Mathf.Abs(horizontal))
+			{
+				// Going Up
+				if (vertical > 0f)
+				{
+					_animator.SetInteger("direction", (int)MovementDirection.Up);
+				}
+
+				// Going Down
+				if (vertical < 0f)
+				{
+					_animator.SetInteger("direction", (int)MovementDirection.Down);
+				}
+				return;
+			}
+
+			// Going Right
+			if (horizontal > 0f)
+			{
+				_animator.SetInteger("direction", (int)MovementDirection.Right);
+			}
+
+			// Going Left
+			if (horizontal < 0f)
+			{
+				_animator.SetInteger("direction", (int)MovementDirection.Left);
+			}
+		}
 	}
 }

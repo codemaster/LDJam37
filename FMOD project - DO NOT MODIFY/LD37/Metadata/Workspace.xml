@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.08.00">
-    <object class="Workspace" id="{236eeed4-9ad9-4982-bcea-26906daf18dc}">
+    <object class="Workspace" id="{a5bbba31-5e61-4a58-b915-1b24b7b48baf}">
         <relationship name="masterEventFolder">
-            <destination>{db6b7b85-79ea-484e-8b94-b49977745948}</destination>
+            <destination>{d00a8de4-75d2-4697-8f0a-445bc794f6be}</destination>
         </relationship>
         <relationship name="masterTagFolder">
-            <destination>{e2d33fd5-0e71-4dcd-a091-2052d9ea5c84}</destination>
+            <destination>{d6b9c09e-fc5a-4fed-9a54-676e2238ded5}</destination>
         </relationship>
         <relationship name="masterBankFolder">
-            <destination>{337d843d-234b-4e09-9af7-28c51d95f627}</destination>
+            <destination>{0cc3df82-1e48-4976-ac44-973c2e4fde65}</destination>
         </relationship>
         <relationship name="masterAssetFolder">
-            <destination>{3b8d26d7-a539-4cd2-929f-dea8b2e38d09}</destination>
+            <destination>{9a65e692-c27d-4244-bad2-518f78990ba4}</destination>
         </relationship>
         <relationship name="mixer">
-            <destination>{c0dc02bd-4c9a-49f1-8f7b-3ced40a0d4d3}</destination>
+            <destination>{420553c4-820d-4e61-a043-b4d25a1ffe5b}</destination>
         </relationship>
         <relationship name="platforms">
-            <destination>{6cbd7e34-d394-4c4e-a389-2d5f4a216b31}</destination>
+            <destination>{e659584b-ebb6-4bef-8d01-2c0d4ba6e0b9}</destination>
         </relationship>
     </object>
-    <object class="Platform" id="{6cbd7e34-d394-4c4e-a389-2d5f4a216b31}">
+    <object class="Platform" id="{e659584b-ebb6-4bef-8d01-2c0d4ba6e0b9}">
         <property name="hardwareType">
             <value>0</value>
         </property>

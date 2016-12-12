@@ -5,6 +5,7 @@ namespace Sparrow
 	/// <summary>
 	/// Enemy logic
 	/// </summary>
+	[RequireComponent(typeof(Animator))]
     public class Enemy : MonoBehaviour, PowerupNotifee
 	{
         /// <summary>
@@ -37,11 +38,17 @@ namespace Sparrow
 		/// </summary>
 		public float MovementSpeed;
 
+		/// <summary>
+		/// The animator for the enemy
+		/// </summary>
+		Animator _animator;
+
         /// <summary>
         /// Start this instance.
         /// </summary>
         void Start()
         {
+			_animator = GetComponent<Animator>();
             RegisterPowerupNotifee();
         }
 
@@ -102,6 +109,7 @@ namespace Sparrow
             }
 
             var movement = Time.deltaTime * MovementSpeed * direction;
+			UpdateSprite(movement);
             transform.Translate(movement);
         }
 
@@ -181,6 +189,43 @@ namespace Sparrow
         {
             ChaseMode = EnemyChaseMode.Chase;
         }
-        #endregion
+		#endregion
+
+		/// <summary>
+		/// Updates the animation of the sprite
+		/// </summary>
+		/// <param name="direction">Direction that the enemy is moving</param>
+		void UpdateSprite(Vector3 direction)
+		{
+			// Handle vertical first
+			if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+			{
+				if (direction.y > 0f)
+				{
+					// Up
+					_animator.SetInteger("direction", (int)MovementDirection.Up);
+				}
+
+				if (direction.y < 0f)
+				{
+					// Down
+					_animator.SetInteger("direction", (int)MovementDirection.Down);
+				}
+				return;
+			}
+
+			// Handle horizontal
+			if (direction.x < 0f)
+			{
+				// Left
+				_animator.SetInteger("direction", (int)MovementDirection.Left);
+			}
+
+			if (direction.x > 0f)
+			{
+				// Right
+				_animator.SetInteger("direction", (int)MovementDirection.Right);
+			}
+		}
 	}
 }

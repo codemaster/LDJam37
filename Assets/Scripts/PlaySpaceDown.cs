@@ -5,6 +5,7 @@ namespace Sparrow
 	[RequireComponent(typeof(FMODUnity.StudioEventEmitter))]
 	public class PlaySpaceDown : MonoBehaviour
 	{
+
 		// sound emitter reference
 		FMODUnity.StudioEventEmitter eventEmitterRef;
 
@@ -25,5 +26,6 @@ namespace Sparrow
 			}
 
 		}
+
 	}
 }
