@@ -43,7 +43,7 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : Component
 	{
 		if (null != _instance)
 		{
-			Destroy(this);
+			Destroy(_instance);
 		}
 	}
 }

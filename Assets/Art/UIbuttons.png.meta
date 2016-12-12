@@ -1,9 +1,13 @@
 fileFormatVersion: 2
-guid: 6574260069c304845a0e97514b9b8473
-timeCreated: 1481489475
+guid: 34a1f9e18c6f34b9fb1e60461e50d91f
+timeCreated: 1481503143
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: UIbuttons_0
+    21300002: UIbuttons_1
+    21300004: UIbuttons_2
+    21300006: UIbuttons_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -34,7 +38,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -92,7 +96,59 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UIbuttons_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 320
+        width: 159
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIbuttons_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 229
+        width: 142
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIbuttons_2
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 120
+        width: 156
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIbuttons_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 28
+        width: 182
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

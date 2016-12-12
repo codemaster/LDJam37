@@ -39,7 +39,10 @@ namespace Sparrow
 			private set
 			{
 				_health = value;
-				OnHealthChange.Invoke(Health);
+				if (null != OnHealthChange)
+				{
+					OnHealthChange.Invoke(Health);
+				}
 			}
 		}
 
@@ -58,6 +61,11 @@ namespace Sparrow
 		/// Event for when the character's health changes
 		/// </summary>
 		public HealthChangeEvent OnHealthChange;
+
+		/// <summary>
+		/// When a collectable item is obtained
+		/// </summary>
+		public UnityEvent OnCollectItem;
 
         /// <summary>
         /// Is the player PoweredUp?
@@ -170,6 +178,15 @@ namespace Sparrow
 				Destroy(other);
 				// Reduce health by 1
 				Health--;
+			}
+
+			// Check if the other object is a collectable
+			var collectable = other.GetComponent<CollectItem>();
+			if (null != collectable)
+			{
+				Debug.Log("Obtained collectable");
+				OnCollectItem.Invoke();
+
 			}
 		}
 
