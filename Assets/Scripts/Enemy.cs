@@ -43,6 +43,11 @@ namespace Sparrow
 		/// </summary>
 		Animator _animator;
 
+		// sound emitter reference
+		[FMODUnity.EventRef]
+		public string CloudStepEvent;
+		public float stepNoiseCooldown = 2.0f;
+
         /// <summary>
         /// Start this instance.
         /// </summary>
@@ -106,6 +111,7 @@ namespace Sparrow
 
 
             var movement = Time.deltaTime * MovementSpeed * direction;
+			PlayStepSound (movement);
 			UpdateSprite(movement);
             transform.Translate(movement);
         }
@@ -201,6 +207,17 @@ namespace Sparrow
 				// Right
 				_animator.SetInteger("direction", (int)MovementDirection.Right);
 			}
+		}
+
+		float timeElapsedSinceLastStep = 0.0f;
+
+		void PlayStepSound(Vector3 movement){
+			if((movement != Vector3.zero)&& (timeElapsedSinceLastStep>stepNoiseCooldown)){
+				//Debug.Log ("Step");
+				FMODUnity.RuntimeManager.PlayOneShot(CloudStepEvent, transform.position);
+				timeElapsedSinceLastStep = 0.0f;
+			}
+			timeElapsedSinceLastStep += Time.deltaTime;
 		}
 	}
 }

@@ -129,6 +129,8 @@ namespace Sparrow
 		public string DoorEvent;
 		[FMODUnity.EventRef]
 		public string CollectableEvent;
+		[FMODUnity.EventRef]
+		public string CloudDeathEvent;
 		public float stepNoiseCooldown = 0.5f;
 
 		/*void Awake()
@@ -184,6 +186,7 @@ namespace Sparrow
 				Debug.Log("Attacked by enemy");
 				// Destroy the enemy
 				Destroy(other);
+				FMODUnity.RuntimeManager.PlayOneShot(CloudDeathEvent, transform.position);
 				// Reduce health by 1
 				Health--;
 				FMODUnity.RuntimeManager.PlayOneShot(DamageEvent, transform.position);
