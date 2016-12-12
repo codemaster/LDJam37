@@ -9,6 +9,7 @@ namespace Sparrow
 	/// Controller for the character
 	/// </summary>
 	[RequireComponent(typeof(Animator))]
+	[RequireComponent(typeof(FMODUnity.StudioEventEmitter))]
     public class CharacterController : SingletonBehaviour<CharacterController>, PowerupNotifier
 	{		
 		/// <summary>
@@ -119,6 +120,16 @@ namespace Sparrow
 		/// </summary>
 		protected bool _use;
 
+		// sound emitter reference
+		FMODUnity.StudioEventEmitter eventEmitterRef;
+		public float stepNoiseCooldown = 0.5f;
+
+		void Awake()
+		{
+			// Reference to sound emitter component of this object
+			eventEmitterRef = GetComponent<FMODUnity.StudioEventEmitter>();
+		}
+
 		/// <summary>
 		/// Updates once per frame
 		/// </summary>
@@ -132,6 +143,8 @@ namespace Sparrow
 			var horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed;
 			UpdateMovementSprite(vertical, horizontal);
 			transform.Translate(horizontal, vertical, 0f);
+
+			PlayStepSound (vertical, horizontal);
 
             CheckPowerUpTime();
 		}
@@ -278,6 +291,17 @@ namespace Sparrow
 			{
 				_animator.SetInteger("direction", (int)MovementDirection.Left);
 			}
+		}
+			
+		float timeElapsedSinceLastStep = 0.0f;
+
+		void PlayStepSound(float vertical, float horizontal){
+			if(((vertical != 0.0f) || (horizontal != 0.0f)) && (timeElapsedSinceLastStep>stepNoiseCooldown)){
+				//Debug.Log ("Step");
+				eventEmitterRef.Play();
+				timeElapsedSinceLastStep = 0.0f;
+			}
+			timeElapsedSinceLastStep += Time.deltaTime;
 		}
 	}
 }

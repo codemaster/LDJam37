@@ -10,6 +10,9 @@ namespace Sparow
 
 	public class TitleScreen : MonoBehaviour
 	{
+
+		public string NextLevel;
+
 		//--------------------------------------------------------------------
 		// 1: Using the EventRef attribute will present the designer with
 		//    the UI for selecting events.
@@ -78,10 +81,7 @@ namespace Sparow
 		/// <returns>IEnumerator for coroutine</returns>
 		IEnumerator LoadGame()
 		{
-
-
-
-			yield return SceneManager.LoadSceneAsync("Gameplay");
+			yield return SceneManager.LoadSceneAsync(NextLevel);
 		}
 	}
 }
