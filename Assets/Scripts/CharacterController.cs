@@ -8,8 +8,20 @@ namespace Sparrow
 	/// <summary>
 	/// Controller for the character
 	/// </summary>
+	[RequireComponent(typeof(Animator))]
     public class CharacterController : SingletonBehaviour<CharacterController>, PowerupNotifier
 	{
+		/// <summary>
+		/// Movement directions
+		/// </summary>
+		enum MovementDirection
+		{
+			Up,
+			Right,
+			Down,
+			Left
+		}
+		
 		/// <summary>
 		/// The movement speed of the character
 		/// </summary>
@@ -87,6 +99,11 @@ namespace Sparrow
         private List<PowerupNotifee> _powerupNotifees;
 
 		/// <summary>
+		/// The animator for the character
+		/// </summary>
+		Animator _animator;
+
+		/// <summary>
 		/// The current health of the character
 		/// </summary>
 		int _health;
@@ -98,6 +115,7 @@ namespace Sparrow
         {
 			Health = StartingHealth;
             _powerupNotifees = new List<PowerupNotifee>();
+			_animator = GetComponent<Animator>();
         }
 
 		/// <summary>
@@ -112,10 +130,12 @@ namespace Sparrow
 		{
 			// Using something?
 			_use = Input.GetButton("Jump");
-			
+
 			// Movement
-			var horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed;
 			var vertical = Input.GetAxis("Vertical") * Time.deltaTime * MovementSpeed;
+			var horizontal = (Mathf.Abs(vertical) > Mathf.Epsilon) ? 0f :
+				Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed;
+			UpdateMovementSprite(vertical, horizontal);
 			transform.Translate(horizontal, vertical, 0f);
 
             CheckPowerUpTime();
@@ -223,5 +243,42 @@ namespace Sparrow
             if (col.gameObject.CompareTag("Powerup"))
                 PoweredUp = true;
         }
+
+		/// <summary>
+		/// Updates the movement sprite.
+		/// </summary>
+		/// <param name="vertical">Vertical movement</param>
+		/// <param name="horizontal">Horizontal movement</param>
+		void UpdateMovementSprite(float vertical, float horizontal)
+		{
+			// Prioritize vertical movement
+			if (Mathf.Abs(vertical) > 0f)
+			{
+				// Going Up
+				if (vertical > 0f)
+				{
+					_animator.SetInteger("direction", (int)MovementDirection.Up);
+				}
+
+				// Going Down
+				if (vertical < 0f)
+				{
+					_animator.SetInteger("direction", (int)MovementDirection.Down);
+				}
+				return;
+			}
+
+			// Going Right
+			if (horizontal > 0f)
+			{
+				_animator.SetInteger("direction", (int)MovementDirection.Right);
+			}
+
+			// Going Left
+			if (horizontal < 0f)
+			{
+				_animator.SetInteger("direction", (int)MovementDirection.Left);
+			}
+		}
 	}
 }

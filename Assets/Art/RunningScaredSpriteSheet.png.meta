@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c2229b55d1f6f4e27958ff2ef4225f0b
-timeCreated: 1481482780
+timeCreated: 1481487621
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,7 @@ TextureImporter:
     21300010: RunningScaredSpriteSheet_5
     21300012: RunningScaredSpriteSheet_6
     21300014: RunningScaredSpriteSheet_7
+    21300016: RunningScaredSpriteSheet_8
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -107,7 +108,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 200
-        width: 99
+        width: 100
         height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -119,9 +120,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 100
-        y: 202
-        width: 98
-        height: 98
+        y: 200
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +132,10 @@ TextureImporter:
       name: RunningScaredSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 207
-        y: 100
-        width: 85
-        height: 200
+        x: 200
+        y: 200
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,7 +147,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 100
-        width: 98
+        width: 100
         height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -158,9 +159,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 100
-        y: 99
-        width: 88
-        height: 101
+        y: 100
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,10 +171,10 @@ TextureImporter:
       name: RunningScaredSpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 4
-        y: 0
-        width: 88
-        height: 98
+        x: 200
+        y: 100
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,9 +184,9 @@ TextureImporter:
       name: RunningScaredSpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 112
+        x: 0
         y: 0
-        width: 88
+        width: 100
         height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -196,10 +197,23 @@ TextureImporter:
       name: RunningScaredSpriteSheet_7
       rect:
         serializedVersion: 2
+        x: 100
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RunningScaredSpriteSheet_8
+      rect:
+        serializedVersion: 2
         x: 200
         y: 0
-        width: 96
-        height: 93
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
