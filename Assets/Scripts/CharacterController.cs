@@ -9,6 +9,7 @@ namespace Sparrow
 	/// Controller for the character
 	/// </summary>
 	[RequireComponent(typeof(Animator))]
+	//[RequireComponent(typeof(FMODUnity.StudioEventEmitter))]
     public class CharacterController : SingletonBehaviour<CharacterController>, PowerupNotifier
 	{		
 		/// <summary>
@@ -119,6 +120,23 @@ namespace Sparrow
 		/// </summary>
 		protected bool _use;
 
+		// sound emitter reference
+		[FMODUnity.EventRef]
+		public string FootstepEvent;
+		[FMODUnity.EventRef]
+		public string DamageEvent;
+		[FMODUnity.EventRef]
+		public string DoorEvent;
+		[FMODUnity.EventRef]
+		public string CollectableEvent;
+		public float stepNoiseCooldown = 0.5f;
+
+		/*void Awake()
+		{
+			// Reference to sound emitter component of this object
+			eventEmitterRef = GetComponent<FMODUnity.StudioEventEmitter>();
+		}*/
+
 		/// <summary>
 		/// Updates once per frame
 		/// </summary>
@@ -132,6 +150,8 @@ namespace Sparrow
 			var horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed;
 			UpdateMovementSprite(vertical, horizontal);
 			transform.Translate(horizontal, vertical, 0f);
+
+			PlayStepSound (vertical, horizontal);
 
             CheckPowerUpTime();
 		}
@@ -154,6 +174,7 @@ namespace Sparrow
 				Debug.Log("Open the door");
 				// Open the door
 				door.Open();
+				FMODUnity.RuntimeManager.PlayOneShot(DoorEvent, transform.position);
 			}
 
 			// Check if the other object is an enemy
@@ -165,6 +186,8 @@ namespace Sparrow
 				Destroy(other);
 				// Reduce health by 1
 				Health--;
+				FMODUnity.RuntimeManager.PlayOneShot(DamageEvent, transform.position);
+
 			}
 
 			// Check if the other object is a collectable
@@ -173,6 +196,7 @@ namespace Sparrow
 			{
 				Debug.Log("Obtained collectable");
 				OnCollectItem.Invoke();
+				FMODUnity.RuntimeManager.PlayOneShot(CollectableEvent, transform.position);
 
 			}
 		}
@@ -278,6 +302,17 @@ namespace Sparrow
 			{
 				_animator.SetInteger("direction", (int)MovementDirection.Left);
 			}
+		}
+			
+		float timeElapsedSinceLastStep = 0.0f;
+
+		void PlayStepSound(float vertical, float horizontal){
+			if(((vertical != 0.0f) || (horizontal != 0.0f)) && (timeElapsedSinceLastStep>stepNoiseCooldown)){
+				//Debug.Log ("Step");
+				FMODUnity.RuntimeManager.PlayOneShot(FootstepEvent, transform.position);
+				timeElapsedSinceLastStep = 0.0f;
+			}
+			timeElapsedSinceLastStep += Time.deltaTime;
 		}
 	}
 }

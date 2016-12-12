@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{9f89ff30-f430-425c-a5e9-26c74be73a82}">
+        <property name="assetPath">
+            <value>MAGIC SPELL Distinct Thrust Bright Pad Subtle (stereo).wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.98437641723356006</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{9a65e692-c27d-4244-bad2-518f78990ba4}</destination>
+        </relationship>
+    </object>
+</objects>

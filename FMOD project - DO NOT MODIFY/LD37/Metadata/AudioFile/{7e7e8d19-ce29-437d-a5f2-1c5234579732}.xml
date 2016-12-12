@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{7e7e8d19-ce29-437d-a5f2-1c5234579732}">
+        <property name="assetPath">
+            <value>GRUNT Male Hurt 01 (mono).wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>0.40616780045351475</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{9a65e692-c27d-4244-bad2-518f78990ba4}</destination>
+        </relationship>
+    </object>
+</objects>
