@@ -10,18 +10,7 @@ namespace Sparrow
 	/// </summary>
 	[RequireComponent(typeof(Animator))]
     public class CharacterController : SingletonBehaviour<CharacterController>, PowerupNotifier
-	{
-		/// <summary>
-		/// Movement directions
-		/// </summary>
-		enum MovementDirection
-		{
-			Up,
-			Right,
-			Down,
-			Left
-		}
-		
+	{		
 		/// <summary>
 		/// The movement speed of the character
 		/// </summary>
@@ -104,7 +93,7 @@ namespace Sparrow
         /// <summary>
         /// The powerup notifees.
         /// </summary>
-        private List<PowerupNotifee> _powerupNotifees;
+		readonly List<PowerupNotifee> _powerupNotifees = new List<PowerupNotifee>();
 
 		/// <summary>
 		/// The animator for the character
@@ -122,7 +111,6 @@ namespace Sparrow
         void Start()
         {
 			Health = StartingHealth;
-            _powerupNotifees = new List<PowerupNotifee>();
 			_animator = GetComponent<Animator>();
         }
 
@@ -141,8 +129,7 @@ namespace Sparrow
 
 			// Movement
 			var vertical = Input.GetAxis("Vertical") * Time.deltaTime * MovementSpeed;
-			var horizontal = (Mathf.Abs(vertical) > Mathf.Epsilon) ? 0f :
-				Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed;
+			var horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed;
 			UpdateMovementSprite(vertical, horizontal);
 			transform.Translate(horizontal, vertical, 0f);
 
@@ -220,11 +207,6 @@ namespace Sparrow
         /// <param name="notifee">Notifee.</param>
         public void RegisterPowerupNotifee(PowerupNotifee notifee)
         {
-            if (_powerupNotifees == null)
-            {
-                Debug.LogWarning(name + "'s CharacterController's powerupNotifees list not instantiated. Check the Scripts Execution Order.");
-                return;
-            }
             _powerupNotifees.Add(notifee);
         }
 
@@ -269,7 +251,7 @@ namespace Sparrow
 		void UpdateMovementSprite(float vertical, float horizontal)
 		{
 			// Prioritize vertical movement
-			if (Mathf.Abs(vertical) > 0f)
+			if (Mathf.Abs(vertical) > Mathf.Abs(horizontal))
 			{
 				// Going Up
 				if (vertical > 0f)

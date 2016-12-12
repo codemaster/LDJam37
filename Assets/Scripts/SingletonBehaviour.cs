@@ -41,9 +41,10 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : Component
 	/// </summary>
 	void Awake()
 	{
-		if (null != _instance)
+		if (null != _instance
+		    && _instance != this)
 		{
-			Destroy(_instance);
+			Destroy(this);
 		}
 	}
 }
