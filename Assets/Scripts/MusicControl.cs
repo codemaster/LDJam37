@@ -24,10 +24,6 @@ public class MusicControl : MonoBehaviour {
 		musicEv.setParameterValue ("Stress", Value);
 	}
 
-	public void SpeedLevel (float Value = 0.0f){
-		musicEv.setParameterValue ("Speed", Value);
-	}
-
 	public void CreepValue (float Value = 0.0f){
 		musicEv.setParameterValue ("Creep", Value);
 	}

@@ -156,6 +156,7 @@ namespace Sparrow
 			PlayStepSound (vertical, horizontal);
 
             CheckPowerUpTime();
+			MusicControl.CreepValue (b2f(PoweredUp));
 		}
 
 		/// <summary>
@@ -317,5 +318,13 @@ namespace Sparrow
 			}
 			timeElapsedSinceLastStep += Time.deltaTime;
 		}
+			
+		float b2f(bool Value){
+			if(Value){
+				return 1.0f;
+			}
+			return 0.0f;
+		}
+
 	}
 }

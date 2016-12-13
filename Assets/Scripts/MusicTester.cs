@@ -8,7 +8,6 @@ public class MusicTester : MonoBehaviour {
 
 	public float inGame = 0.0f;
 	public float stress = 0.0f;
-	public float speed = 0.0f;
 	public float creep = 0.0f;
 
 	// Use this for initialization
@@ -20,7 +19,6 @@ public class MusicTester : MonoBehaviour {
 	void Update () {
 		musicSystem.InGameMusic (inGame);
 		musicSystem.StressLevel (stress);
-		musicSystem.SpeedLevel (speed);
 		musicSystem.CreepValue (creep);
 		
 	}
