@@ -13,20 +13,10 @@ namespace Sparow
 
 		public string NextLevel;
 
-		//--------------------------------------------------------------------
-		// 1: Using the EventRef attribute will present the designer with
-		//    the UI for selecting events.
-		//--------------------------------------------------------------------
 		[FMODUnity.EventRef]
 		public string StartSound;
 
-		//--------------------------------------------------------------------
-		// 2: Using the EventInstance class will allow us to manage an event
-		//    over it's lifetime. Including starting, stopping and changing 
-		//    parameters.
-		//--------------------------------------------------------------------
 		FMOD.Studio.EventInstance startSoundState;
-
 
 		MusicControl musicSystem;
 
@@ -35,6 +25,7 @@ namespace Sparow
 		void Start(){
 			playerWantsToStart = false;
 			musicSystem = GameObject.Find("MusicSystem").GetComponent<MusicControl>();
+			musicSystem.InGameMusic (0.0f);
 			startSoundState = FMODUnity.RuntimeManager.CreateInstance(StartSound);
 		}
 

@@ -12,6 +12,14 @@ namespace Sparow
 		/// <summary>
 		/// Update in each frame
 		/// </summary>
+
+		MusicControl musicSystem;
+
+		void Start(){
+			musicSystem = GameObject.Find("MusicSystem").GetComponent<MusicControl>();
+			musicSystem.InGameMusic (0.0f);
+		}
+
 		void Update()
 		{
 			if (Input.GetButtonDown("Jump"))

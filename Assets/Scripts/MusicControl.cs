@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MusicControl : MonoBehaviour {
 
+	public static MusicControl i;
+
 	[FMODUnity.EventRef]
 	public string music = "event:/Music";
 
@@ -11,9 +13,16 @@ public class MusicControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		DontDestroyOnLoad (transform.gameObject);
-		musicEv = FMODUnity.RuntimeManager.CreateInstance (music);
-		musicEv.start ();
+		if(!i){
+			i = this;
+			DontDestroyOnLoad (transform.gameObject);
+			musicEv = FMODUnity.RuntimeManager.CreateInstance (music);
+			musicEv.start ();
+		}
+		else{
+			Destroy (transform.gameObject);
+		}
+
 	}
 
 	public void InGameMusic (float Value = 0.0f){

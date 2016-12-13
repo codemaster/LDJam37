@@ -12,6 +12,8 @@ namespace Sparrow
 	//[RequireComponent(typeof(FMODUnity.StudioEventEmitter))]
     public class CharacterController : SingletonBehaviour<CharacterController>, PowerupNotifier
 	{		
+		MusicControl musicSystem;
+
 		/// <summary>
 		/// The movement speed of the character
 		/// </summary>
@@ -113,6 +115,7 @@ namespace Sparrow
         {
 			Health = StartingHealth;
 			_animator = GetComponent<Animator>();
+			musicSystem = GameObject.Find ("MusicSystem").GetComponent<MusicControl> ();
         }
 
 		/// <summary>
@@ -156,7 +159,7 @@ namespace Sparrow
 			PlayStepSound (vertical, horizontal);
 
             CheckPowerUpTime();
-			MusicControl.CreepValue (b2f(PoweredUp));
+			musicSystem.CreepValue (b2f(PoweredUp));
 		}
 
 		/// <summary>
